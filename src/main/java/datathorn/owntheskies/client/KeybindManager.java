@@ -11,7 +11,6 @@ import datathorn.owntheskies.render.LandingIndicator;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.option.KeyBinding;
-import net.minecraft.client.util.InputUtil;
 import net.minecraft.text.Text;
 import org.lwjgl.glfw.GLFW;
 
@@ -34,73 +33,73 @@ public class KeybindManager {
 
         toggleAutoSwitchKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
             "key.owntheskies.toggle_auto_switch",
-            InputUtil.Type.KEYSYM.createFromCode(GLFW.GLFW_KEY_V),
+            GLFW.GLFW_KEY_V,
             category
         ));
 
         nextProfileKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
             "key.owntheskies.next_profile",
-            InputUtil.Type.KEYSYM.createFromCode(GLFW.GLFW_KEY_RIGHT_BRACKET),
+            GLFW.GLFW_KEY_RIGHT_BRACKET,
             category
         ));
 
         previousProfileKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
             "key.owntheskies.previous_profile",
-            InputUtil.Type.KEYSYM.createFromCode(GLFW.GLFW_KEY_LEFT_BRACKET),
+            GLFW.GLFW_KEY_LEFT_BRACKET,
             category
         ));
 
         launchKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
             "key.owntheskies.launch",
-            InputUtil.Type.KEYSYM.createFromCode(GLFW.GLFW_KEY_R),
+            GLFW.GLFW_KEY_R,
             category
         ));
 
         toggleWeaponSwapKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
             "key.owntheskies.toggle_weapon_swap",
-            InputUtil.Type.KEYSYM.createFromCode(GLFW.GLFW_KEY_B),
+            GLFW.GLFW_KEY_B,
             category
         ));
 
         toggleArmorSwapKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
             "key.owntheskies.toggle_armor_swap",
-            InputUtil.Type.KEYSYM.createFromCode(GLFW.GLFW_KEY_N),
+            GLFW.GLFW_KEY_N,
             category
         ));
 
         toggleAutoAttackKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
             "key.owntheskies.toggle_auto_attack",
-            InputUtil.Type.KEYSYM.createFromCode(GLFW.GLFW_KEY_M),
+            GLFW.GLFW_KEY_M,
             category
         ));
 
         organizeHotbarKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
             "key.owntheskies.organize_hotbar",
-            InputUtil.Type.KEYSYM.createFromCode(GLFW.GLFW_KEY_H),
+            GLFW.GLFW_KEY_H,
             category
         ));
 
         toggleLandingIndicatorKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
             "key.owntheskies.toggle_landing_indicator",
-            InputUtil.Type.KEYSYM.createFromCode(GLFW.GLFW_KEY_L),
+            GLFW.GLFW_KEY_L,
             category
         ));
 
         togglePreLaunchIndicatorKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
             "key.owntheskies.toggle_prelaunch_indicator",
-            InputUtil.Type.KEYSYM.createFromCode(GLFW.GLFW_KEY_K),
+            GLFW.GLFW_KEY_K,
             category
         ));
 
         nextLaunchModeKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
             "key.owntheskies.next_launch_mode",
-            InputUtil.Type.KEYSYM.createFromCode(GLFW.GLFW_KEY_EQUAL),
+            GLFW.GLFW_KEY_EQUAL,
             category
         ));
 
         previousLaunchModeKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
             "key.owntheskies.previous_launch_mode",
-            InputUtil.Type.KEYSYM.createFromCode(GLFW.GLFW_KEY_MINUS),
+            GLFW.GLFW_KEY_MINUS,
             category
         ));
 
@@ -112,63 +111,42 @@ public class KeybindManager {
             if (toggleAutoSwitchKey.wasPressed()) {
                 AutoSwitcher.toggleAutoSwitch();
                 String status = AutoSwitcher.isAutoSwitchEnabled() ? "enabled" : "disabled";
-                client.player.sendMessage(
-                    Text.literal("Auto-Switch: " + status),
-                    true
-                );
+                client.player.sendMessage(Text.literal("Auto-Switch: " + status), true);
             }
 
             if (nextProfileKey.wasPressed()) {
                 ProfileManager.nextProfile();
-                client.player.sendMessage(
-                    Text.literal("Profile: " + ProfileManager.getCurrentProfile().getName()),
-                    true
-                );
+                client.player.sendMessage(Text.literal("Profile: " + ProfileManager.getCurrentProfile().getName()), true);
             }
 
             if (previousProfileKey.wasPressed()) {
                 ProfileManager.previousProfile();
-                client.player.sendMessage(
-                    Text.literal("Profile: " + ProfileManager.getCurrentProfile().getName()),
-                    true
-                );
+                client.player.sendMessage(Text.literal("Profile: " + ProfileManager.getCurrentProfile().getName()), true);
             }
 
             if (launchKey.wasPressed()) {
                 if (!ElytraLauncher.isLaunching()) {
                     ElytraLauncher.startLaunch();
-                    client.player.sendMessage(
-                        Text.literal("Launching..."),
-                        true
-                    );
+                    client.player.sendMessage(Text.literal("Launching..."), true);
                 }
             }
 
             if (toggleWeaponSwapKey.wasPressed()) {
                 WeaponSwapper.toggleWeaponSwap();
                 String status = WeaponSwapper.isWeaponSwapEnabled() ? "enabled" : "disabled";
-                client.player.sendMessage(
-                    Text.literal("Weapon Swap: " + status),
-                    true
-                );
+                client.player.sendMessage(Text.literal("Weapon Swap: " + status), true);
             }
 
             if (toggleArmorSwapKey.wasPressed()) {
                 WeaponSwapper.toggleArmorSwap();
                 String status = WeaponSwapper.isArmorSwapEnabled() ? "enabled" : "disabled";
-                client.player.sendMessage(
-                    Text.literal("Armor Swap: " + status),
-                    true
-                );
+                client.player.sendMessage(Text.literal("Armor Swap: " + status), true);
             }
 
             if (toggleAutoAttackKey.wasPressed()) {
                 AutoAttack.toggleAutoAttack();
                 String status = AutoAttack.isAutoAttackEnabled() ? "enabled" : "disabled";
-                client.player.sendMessage(
-                    Text.literal("Auto-Attack: " + status),
-                    true
-                );
+                client.player.sendMessage(Text.literal("Auto-Attack: " + status), true);
             }
 
             if (organizeHotbarKey.wasPressed()) {
@@ -178,49 +156,28 @@ public class KeybindManager {
             if (toggleLandingIndicatorKey.wasPressed()) {
                 LandingIndicator.toggle();
                 String status = LandingIndicator.isEnabled() ? "enabled" : "disabled";
-                client.player.sendMessage(
-                    Text.literal("Landing Indicator: " + status),
-                    true
-                );
+                client.player.sendMessage(Text.literal("Landing Indicator: " + status), true);
             }
 
             if (togglePreLaunchIndicatorKey.wasPressed()) {
                 LandingIndicator.togglePreLaunchMode();
                 String status = LandingIndicator.isPreLaunchMode() ? "enabled" : "disabled";
-                client.player.sendMessage(
-                    Text.literal("§6Pre-Launch Indicator: §e" + status),
-                    true
-                );
+                client.player.sendMessage(Text.literal("§6Pre-Launch Indicator: §e" + status), true);
                 if (LandingIndicator.isPreLaunchMode()) {
-                    client.player.sendMessage(
-                        Text.literal("§7Landing indicator will show continuously"),
-                        true
-                    );
+                    client.player.sendMessage(Text.literal("§7Landing indicator will show continuously"), true);
                 }
             }
 
             if (nextLaunchModeKey.wasPressed()) {
                 LaunchConfig.nextMode();
-                client.player.sendMessage(
-                    Text.literal("§6Launch Mode: §e" + LaunchConfig.getCurrentMode().getDisplayName()),
-                    true
-                );
-                client.player.sendMessage(
-                    Text.literal("§7" + LaunchConfig.getModeDescription()),
-                    true
-                );
+                client.player.sendMessage(Text.literal("§6Launch Mode: §e" + LaunchConfig.getCurrentMode().getDisplayName()), true);
+                client.player.sendMessage(Text.literal("§7" + LaunchConfig.getModeDescription()), true);
             }
 
             if (previousLaunchModeKey.wasPressed()) {
                 LaunchConfig.previousMode();
-                client.player.sendMessage(
-                    Text.literal("§6Launch Mode: §e" + LaunchConfig.getCurrentMode().getDisplayName()),
-                    true
-                );
-                client.player.sendMessage(
-                    Text.literal("§7" + LaunchConfig.getModeDescription()),
-                    true
-                );
+                client.player.sendMessage(Text.literal("§6Launch Mode: §e" + LaunchConfig.getCurrentMode().getDisplayName()), true);
+                client.player.sendMessage(Text.literal("§7" + LaunchConfig.getModeDescription()), true);
             }
         });
     }
