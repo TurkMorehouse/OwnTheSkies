@@ -30,110 +30,94 @@ public class KeybindManager {
     private static KeyBinding previousLaunchModeKey;
 
     public static void register() {
-        // Category for our keybindings (string-based)
         String category = "category.owntheskies.combat";
 
         toggleAutoSwitchKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
             "key.owntheskies.toggle_auto_switch",
-            InputUtil.Type.KEYSYM,
-            GLFW.GLFW_KEY_V,
+            InputUtil.Type.KEYSYM.createFromCode(GLFW.GLFW_KEY_V),
             category
         ));
 
         nextProfileKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
             "key.owntheskies.next_profile",
-            InputUtil.Type.KEYSYM,
-            GLFW.GLFW_KEY_RIGHT_BRACKET,
+            InputUtil.Type.KEYSYM.createFromCode(GLFW.GLFW_KEY_RIGHT_BRACKET),
             category
         ));
 
         previousProfileKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
             "key.owntheskies.previous_profile",
-            InputUtil.Type.KEYSYM,
-            GLFW.GLFW_KEY_LEFT_BRACKET,
+            InputUtil.Type.KEYSYM.createFromCode(GLFW.GLFW_KEY_LEFT_BRACKET),
             category
         ));
 
         launchKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
             "key.owntheskies.launch",
-            InputUtil.Type.KEYSYM,
-            GLFW.GLFW_KEY_R,
+            InputUtil.Type.KEYSYM.createFromCode(GLFW.GLFW_KEY_R),
             category
         ));
 
         toggleWeaponSwapKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
             "key.owntheskies.toggle_weapon_swap",
-            InputUtil.Type.KEYSYM,
-            GLFW.GLFW_KEY_B,
+            InputUtil.Type.KEYSYM.createFromCode(GLFW.GLFW_KEY_B),
             category
         ));
 
         toggleArmorSwapKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
             "key.owntheskies.toggle_armor_swap",
-            InputUtil.Type.KEYSYM,
-            GLFW.GLFW_KEY_N,
+            InputUtil.Type.KEYSYM.createFromCode(GLFW.GLFW_KEY_N),
             category
         ));
 
         toggleAutoAttackKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
             "key.owntheskies.toggle_auto_attack",
-            InputUtil.Type.KEYSYM,
-            GLFW.GLFW_KEY_M,
+            InputUtil.Type.KEYSYM.createFromCode(GLFW.GLFW_KEY_M),
             category
         ));
 
         organizeHotbarKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
             "key.owntheskies.organize_hotbar",
-            InputUtil.Type.KEYSYM,
-            GLFW.GLFW_KEY_H,
+            InputUtil.Type.KEYSYM.createFromCode(GLFW.GLFW_KEY_H),
             category
         ));
 
         toggleLandingIndicatorKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
             "key.owntheskies.toggle_landing_indicator",
-            InputUtil.Type.KEYSYM,
-            GLFW.GLFW_KEY_L,
+            InputUtil.Type.KEYSYM.createFromCode(GLFW.GLFW_KEY_L),
             category
         ));
 
         togglePreLaunchIndicatorKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
             "key.owntheskies.toggle_prelaunch_indicator",
-            InputUtil.Type.KEYSYM,
-            GLFW.GLFW_KEY_K,
+            InputUtil.Type.KEYSYM.createFromCode(GLFW.GLFW_KEY_K),
             category
         ));
 
         nextLaunchModeKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
             "key.owntheskies.next_launch_mode",
-            InputUtil.Type.KEYSYM,
-            GLFW.GLFW_KEY_EQUAL, // + key
+            InputUtil.Type.KEYSYM.createFromCode(GLFW.GLFW_KEY_EQUAL),
             category
         ));
 
         previousLaunchModeKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
             "key.owntheskies.previous_launch_mode",
-            InputUtil.Type.KEYSYM,
-            GLFW.GLFW_KEY_MINUS, // - key
+            InputUtil.Type.KEYSYM.createFromCode(GLFW.GLFW_KEY_MINUS),
             category
         ));
 
-        // Register tick event to check for key presses
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             if (client.player == null) {
                 return;
             }
 
-            // Toggle auto-switch
             if (toggleAutoSwitchKey.wasPressed()) {
                 AutoSwitcher.toggleAutoSwitch();
                 String status = AutoSwitcher.isAutoSwitchEnabled() ? "enabled" : "disabled";
                 client.player.sendMessage(
                     Text.literal("Auto-Switch: " + status),
-                    true // actionBar
+                    true
                 );
             }
 
-            // Next profile
             if (nextProfileKey.wasPressed()) {
                 ProfileManager.nextProfile();
                 client.player.sendMessage(
@@ -142,7 +126,6 @@ public class KeybindManager {
                 );
             }
 
-            // Previous profile
             if (previousProfileKey.wasPressed()) {
                 ProfileManager.previousProfile();
                 client.player.sendMessage(
@@ -151,7 +134,6 @@ public class KeybindManager {
                 );
             }
 
-            // Launch elytra sequence
             if (launchKey.wasPressed()) {
                 if (!ElytraLauncher.isLaunching()) {
                     ElytraLauncher.startLaunch();
@@ -162,7 +144,6 @@ public class KeybindManager {
                 }
             }
 
-            // Toggle weapon swapping (sword/axe to mace technique)
             if (toggleWeaponSwapKey.wasPressed()) {
                 WeaponSwapper.toggleWeaponSwap();
                 String status = WeaponSwapper.isWeaponSwapEnabled() ? "enabled" : "disabled";
@@ -172,7 +153,6 @@ public class KeybindManager {
                 );
             }
 
-            // Toggle armor swapping (elytra to chestplate technique)
             if (toggleArmorSwapKey.wasPressed()) {
                 WeaponSwapper.toggleArmorSwap();
                 String status = WeaponSwapper.isArmorSwapEnabled() ? "enabled" : "disabled";
@@ -182,7 +162,6 @@ public class KeybindManager {
                 );
             }
 
-            // Toggle auto-attack (automatic swinging to prevent fall damage)
             if (toggleAutoAttackKey.wasPressed()) {
                 AutoAttack.toggleAutoAttack();
                 String status = AutoAttack.isAutoAttackEnabled() ? "enabled" : "disabled";
@@ -192,13 +171,10 @@ public class KeybindManager {
                 );
             }
 
-            // Organize hotbar automatically
             if (organizeHotbarKey.wasPressed()) {
                 HotbarOrganizer.organizeHotbar(client);
-                // Confirmation message is sent by the organizer itself
             }
 
-            // Toggle landing indicator
             if (toggleLandingIndicatorKey.wasPressed()) {
                 LandingIndicator.toggle();
                 String status = LandingIndicator.isEnabled() ? "enabled" : "disabled";
@@ -208,7 +184,6 @@ public class KeybindManager {
                 );
             }
 
-            // Toggle pre-launch indicator mode
             if (togglePreLaunchIndicatorKey.wasPressed()) {
                 LandingIndicator.togglePreLaunchMode();
                 String status = LandingIndicator.isPreLaunchMode() ? "enabled" : "disabled";
@@ -224,7 +199,6 @@ public class KeybindManager {
                 }
             }
 
-            // Next launch mode (increase distance)
             if (nextLaunchModeKey.wasPressed()) {
                 LaunchConfig.nextMode();
                 client.player.sendMessage(
@@ -237,7 +211,6 @@ public class KeybindManager {
                 );
             }
 
-            // Previous launch mode (decrease distance)
             if (previousLaunchModeKey.wasPressed()) {
                 LaunchConfig.previousMode();
                 client.player.sendMessage(
