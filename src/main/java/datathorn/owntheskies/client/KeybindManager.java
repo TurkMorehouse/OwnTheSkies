@@ -11,6 +11,7 @@ import datathorn.owntheskies.render.LandingIndicator;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.option.KeyBinding;
+import net.minecraft.client.util.InputUtil;
 import net.minecraft.text.Text;
 import org.lwjgl.glfw.GLFW;
 
@@ -33,72 +34,84 @@ public class KeybindManager {
 
         toggleAutoSwitchKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
             "key.owntheskies.toggle_auto_switch",
+            InputUtil.Type.KEYSYM,
             GLFW.GLFW_KEY_V,
             category
         ));
 
         nextProfileKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
             "key.owntheskies.next_profile",
+            InputUtil.Type.KEYSYM,
             GLFW.GLFW_KEY_RIGHT_BRACKET,
             category
         ));
 
         previousProfileKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
             "key.owntheskies.previous_profile",
+            InputUtil.Type.KEYSYM,
             GLFW.GLFW_KEY_LEFT_BRACKET,
             category
         ));
 
         launchKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
             "key.owntheskies.launch",
+            InputUtil.Type.KEYSYM,
             GLFW.GLFW_KEY_R,
             category
         ));
 
         toggleWeaponSwapKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
             "key.owntheskies.toggle_weapon_swap",
+            InputUtil.Type.KEYSYM,
             GLFW.GLFW_KEY_B,
             category
         ));
 
         toggleArmorSwapKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
             "key.owntheskies.toggle_armor_swap",
+            InputUtil.Type.KEYSYM,
             GLFW.GLFW_KEY_N,
             category
         ));
 
         toggleAutoAttackKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
             "key.owntheskies.toggle_auto_attack",
+            InputUtil.Type.KEYSYM,
             GLFW.GLFW_KEY_M,
             category
         ));
 
         organizeHotbarKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
             "key.owntheskies.organize_hotbar",
+            InputUtil.Type.KEYSYM,
             GLFW.GLFW_KEY_H,
             category
         ));
 
         toggleLandingIndicatorKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
             "key.owntheskies.toggle_landing_indicator",
+            InputUtil.Type.KEYSYM,
             GLFW.GLFW_KEY_L,
             category
         ));
 
         togglePreLaunchIndicatorKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
             "key.owntheskies.toggle_prelaunch_indicator",
+            InputUtil.Type.KEYSYM,
             GLFW.GLFW_KEY_K,
             category
         ));
 
         nextLaunchModeKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
             "key.owntheskies.next_launch_mode",
+            InputUtil.Type.KEYSYM,
             GLFW.GLFW_KEY_EQUAL,
             category
         ));
 
         previousLaunchModeKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
             "key.owntheskies.previous_launch_mode",
+            InputUtil.Type.KEYSYM,
             GLFW.GLFW_KEY_MINUS,
             category
         ));
